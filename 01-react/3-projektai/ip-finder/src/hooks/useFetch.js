@@ -17,8 +17,8 @@ const useFetch = (url, timeout = 2000) => {
                     city: 'random city',
                     org: 'Telia',
                     country_name: 'random county',
-                    latitude: 37.386,
-                    longitude: -122.0838,
+                    latitude: 54.686569, 
+                    longitude: 25.298406,
                 }))
                 .finally(() => setLoading(false));
         }, timeout);
