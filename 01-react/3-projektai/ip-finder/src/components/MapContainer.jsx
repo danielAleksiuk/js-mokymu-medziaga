@@ -27,8 +27,6 @@ const MapContainer = (props) => {
             mapboxAccessToken={MAP_TOKEN}
             mapStyle="mapbox://styles/mapbox/streets-v12"
             {...viewPort}
-    
-
             onMove= {(viewPort) => setViewPort(viewPort.viewState)}
         >
             <Marker
