@@ -3,9 +3,14 @@ import { useState, useEffect } from 'react';
 import { API_URL } from '../../utils/constants';
 import useFetch from '../../hooks/useFetch';
 import LabelWithTitle from '../../components/LabelWithTitle';
+import MapContainer from '../../components/MapContainer';
 
 const Home = () => {
     const [ipDetails, setIpDetails] = useState(null);
+    const [coordinates, setCoordinates] = useState({
+        latitude: null,
+        longitude: null
+    });
     const {data, makeApiCall, loading} = useFetch(API_URL);
 
     
@@ -15,7 +20,8 @@ const Home = () => {
 
     useEffect(() => {
         if (data) {
-            const {ip, city, org, country_name} = data;
+            const {ip, city, org, country_name, latitude, longitude} = data;
+            setCoordinates({latitude, longitude});
             setIpDetails({ip, city, org, country_name});
         }
         console.log('data value is changed')
@@ -60,7 +66,12 @@ const Home = () => {
                         <strong>Service provider: </strong>
                         <p className="details-s">{ipDetails?.org}</p> */}
                     </div>
-                    <div className='ip-map'>mapas</div> 
+                    <div className='ip-map'>
+                            <MapContainer 
+                                latitude={coordinates.latitude}
+                                longitude={coordinates.longitude}
+                            />
+                    </div> 
                 </div>
             )}
            
