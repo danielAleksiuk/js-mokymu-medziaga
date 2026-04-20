@@ -1,0 +1,62 @@
+{
+  "quizQuestions" : [
+    {
+      "id": 1,
+      "question": "what is the capital of Lithuania?",
+      "options": [
+        {
+          "id": 1, "value": "Vilnius"
+        },
+        {
+          "id": 2, "value": "Kaunas"
+        },
+        {
+          "id": 3, "value": "London"
+        },
+        {
+          "id": 4, "value": "Rome"
+        }
+      ],
+      "answerId": 1
+    },
+    {
+      "id": 2,
+      "question": "what is the capital of Latvia?",
+      "options": [
+        {
+          "id": 5, "value": "Riga"
+        },
+        {
+          "id": 7, "value": "Paris"
+        },
+        {
+          "id": 8, "value": "Madrid"
+        },
+        {
+          "id": 9, "value": "Dublin"
+        }
+      ],
+      "answerId": 5
+    },
+    {
+      "id": 3,
+      "question": "what is the capital of Estonia?",
+      "options": [
+        {
+          "id": 10, "value": "Vilnius"
+        },
+        {
+          "id": 20, "value": "Riga"
+        },
+        {
+          "id": 30, "value": "Talin"
+        },
+        {
+          "id": 40, "value": "Gdansk"
+        }
+      ],
+      "answerId": 30
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
