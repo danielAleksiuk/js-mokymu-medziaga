@@ -7,14 +7,16 @@ import Row from 'react-bootstrap/Row';
 import  Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-
-const API_URL = 'https://www.omdbapi.com';
-const API_KEY = 'apikey=994672fe';
+import MovieDetails from '../../components/movieDetails/MovieDetails';
+import { API_KEY, API_URL } from '../../utils/constants';
 
 const MovieList = () => {
     const [searchValue, setSearchValue] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [isDetailsLoading, setIsDetailsLoading] = useState(false);
     const [movies, setMovies] = useState([]);
+    const [selectedId, setSelectedId] = useState(null);
+    const [showDetails, setShowDetails] = useState(false);
 
     const onChangeMethod  = (event) => {
         setSearchValue(event.target.value);
@@ -30,8 +32,17 @@ const MovieList = () => {
                 .then(reponse => reponse.json())
                 .then(data => setMovies(data.Search))
                 .finally(() => setIsLoading(false));
-            // setTimeout(()=> { setIsLoading(false)}, 2000)
         }
+    }
+
+    const handleShowDetails = (movieId) => {
+        setSelectedId(movieId);
+        setShowDetails(true);
+    }
+
+    const handleCloseDetails = () => {
+        setSelectedId(null);
+        setShowDetails(false);
     }
 
     return (
@@ -46,23 +57,39 @@ const MovieList = () => {
 
                     <Spinner animation="grow"/>
                     <span>Movie list is loading....</span>
-                
-                
+
                 </Row>
+            )}
+
+            { showDetails && ( 
+                <MovieDetails 
+                    id={selectedId} 
+                    isLoading={setIsDetailsLoading} 
+                    handleClose={handleCloseDetails}/>
             )}
 
             { movies && !isLoading && (
                 <Row>
                     {movies.map((movie) => (
-                        <Col md={4}>
+                        <Col md={4} key={movie.imdbID}>
                             <Card style={{ width: '18rem' }}>
                                 <Card.Img variant='top' src={movie.Poster}/>
                                 <Card.Body>
                                     <Card.Title>{movie.Title}</Card.Title>
                                     <Card.Text> type: {movie.Type} /  year: {movie.Year}</Card.Text>
+
+                                    {isDetailsLoading && selectedId === movie.imdbID && (
+                                        <>
+                                            <Spinner/>
+                                            <p>Movie data is loading....</p>
+                                        </>
+                                    )}
                                 </Card.Body>
                                 <Card.Footer>
-                                    <Button variant="primary">Open movie details</Button>
+                                    <Button 
+                                        disabled={isDetailsLoading}
+                                        variant="primary"
+                                        onClick={() => handleShowDetails(movie.imdbID)}>Open movie details</Button>
                                 </Card.Footer>
                             </Card>
                            
@@ -76,3 +103,4 @@ const MovieList = () => {
 }
 
 export default MovieList;
+
