@@ -3,6 +3,7 @@ import {Button, Container, Row, Col} from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner';
 import useFetch from '../hooks/useFetch';
 import { BASE_URL, QUESTION_TIME } from '../utils/constants';
+import Score from '../components/Score/Score';
 
 const Quiz = () => {
     const [questions, setQuestions] = useState([]);
@@ -75,7 +76,7 @@ const Quiz = () => {
         <Container>
             <h2>quiz app</h2>
             {loading && (<Spinner animation="grow"/>)}
-            { !quizStarted && <Button onClick={onStartButtonClick}> Start quiz </Button>}
+            { !quizStarted && !showScore && <Button onClick={onStartButtonClick}> Start quiz </Button>}
 
             { quizStarted && (
                 <Container>
@@ -104,11 +105,14 @@ const Quiz = () => {
                 </Container>
             )}
 
-            { showScore && (
-                <>
-                    <h3>your score is: {score}</h3>
-                </>
-            )}
+            { 
+                showScore && <Score 
+                    points={score}
+                    title="Quiz completed!"
+                    restartButtoText="Restart quiz"
+                    restartButtonClick={onStartButtonClick}
+                /> 
+            }
         </Container>
     )
 };
@@ -116,4 +120,6 @@ const Quiz = () => {
 export default Quiz;
 
 
-// prideti stiliu (css) kai vartotojas pasirenka atsakyma  - active 
+
+
+
