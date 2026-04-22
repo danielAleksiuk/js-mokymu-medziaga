@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-const useFetch = (url, timeout = 2000) => {
+const useFetch = (timeout = 2000) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const makeApiCall = async () => {
+    const makeApiCall = async (url) => {
         setLoading(true);
 
         setTimeout( async () => {

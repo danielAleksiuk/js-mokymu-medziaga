@@ -1,11 +1,119 @@
-import {Container} from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import {Button, Container, Row, Col} from 'react-bootstrap';
+import Spinner from 'react-bootstrap/Spinner';
+import useFetch from '../hooks/useFetch';
+import { BASE_URL, QUESTION_TIME } from '../utils/constants';
 
 const Quiz = () => {
+    const [questions, setQuestions] = useState([]);
+    const [quizStarted, setQuizStarted] = useState(false);
+    const [score, setScore] = useState(0);
+    const [showScore, setShowScore] = useState(false);
+    const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [time, setTime] = useState(QUESTION_TIME);
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const {data, loading, makeApiCall} = useFetch();
+
+    useEffect(() => {
+        makeApiCall(BASE_URL + '/quizQuestions');
+    }, [])
+
+    useEffect(() => {
+        if (data ) {
+            setQuestions(data);
+        }
+    }, [data]);
+
+    useEffect(() => {
+        if (quizStarted) {
+            const interval = setInterval(() => {
+                setTime(prev => {
+                    if (prev > 0) {
+                        return prev - 1;
+                    }
+
+                    if (currentQuestion === questions.length - 1 ) {
+                        setQuizStarted(false);
+                        setShowScore(true);
+                    } else {
+                        setCurrentQuestion(currentQuestion + 1 );
+                    }
+
+                    return QUESTION_TIME;
+                });
+            }, 1000);
+
+            return () => clearInterval(interval);
+        }
+    }, [quizStarted, currentQuestion])
+
+    const onStartButtonClick = () => {
+        setCurrentQuestion(0);
+        setScore(0);
+        setQuizStarted(true);
+        setShowScore(false);
+        setSelectedAnswer(null);
+    }
+
+    const handleNextQuestion = () => {
+        if (currentQuestion === questions.length - 1) {
+            setQuizStarted(false);
+            setShowScore(true);
+            return;
+        }
+        setCurrentQuestion(prev => prev + 1);
+    }
+
+    const handleOptionClick = (optionId) => {
+        setSelectedAnswer(optionId);
+        if (optionId === questions[currentQuestion].answerId) {
+            setScore(prev => prev + 1 );
+        }
+    }
+
     return (
         <Container>
             <h2>quiz app</h2>
+            {loading && (<Spinner animation="grow"/>)}
+            { !quizStarted && <Button onClick={onStartButtonClick}> Start quiz </Button>}
+
+            { quizStarted && (
+                <Container>
+                    <p>time remaining: {time} sek</p>
+                    <h3>{questions[currentQuestion].question}</h3>
+                    <div className='list-group'>
+                        {
+                            questions[currentQuestion].options.map((option, index) => (
+                                <Button 
+                                    key={index}
+                                    className={selectedAnswer === option.id ? 'active' : ''}
+                                    onClick={() => handleOptionClick(option.id)}
+                                >
+                                    {option.value}</Button>
+                            ))
+                        }
+                    </div>
+                    <Row>
+                        <Col>
+                            Questions {currentQuestion + 1 } of {questions.length}
+                        </Col>
+                        <Col>
+                            <Button onClick={handleNextQuestion}>Next question</Button>
+                        </Col>
+                    </Row>
+                </Container>
+            )}
+
+            { showScore && (
+                <>
+                    <h3>your score is: {score}</h3>
+                </>
+            )}
         </Container>
     )
 };
 
 export default Quiz;
+
+
+// prideti stiliu (css) kai vartotojas pasirenka atsakyma  - active 
