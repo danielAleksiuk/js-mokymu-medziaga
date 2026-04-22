@@ -5,6 +5,7 @@ import useFetch from '../hooks/useFetch';
 import { BASE_URL, QUESTION_TIME } from '../utils/constants';
 import Score from '../components/Score/Score';
 import Pagination from '../components/Pagination/Pagination';
+import Question from '../components/Question/Question';
 
 const Quiz = () => {
     const [questions, setQuestions] = useState([]);
@@ -81,23 +82,15 @@ const Quiz = () => {
 
             { quizStarted && (
                 <Container>
-                    <p>time remaining: {time} sek</p>
-                    <h3>{questions[currentQuestion].question}</h3>
-                    <div className='list-group'>
-                        {
-                            questions[currentQuestion].options.map((option, index) => (
-                                <Button 
-                                    key={index}
-                                    className={selectedAnswer === option.id ? 'active' : ''}
-                                    onClick={() => handleOptionClick(option.id)}
-                                >
-                                    {option.value}</Button>
-                            ))
-                        }
-                    </div>
+                    <Question 
+                        seconds={time}
+                        questionTitle={questions[currentQuestion].question}
+                        questionOptions={questions[currentQuestion].options}
+                        handleOptionClick={handleOptionClick}
+                        selectedOptionId={selectedAnswer}
+                    />
                     <Row>
                         <Col>
-                            {/* Questions {currentQuestion + 1 } of {questions.length} */}
                             <Pagination 
                                 title="Questions"
                                 currentPage={currentQuestion + 1}
