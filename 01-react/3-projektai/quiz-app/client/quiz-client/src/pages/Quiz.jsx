@@ -4,6 +4,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import useFetch from '../hooks/useFetch';
 import { BASE_URL, QUESTION_TIME } from '../utils/constants';
 import Score from '../components/Score/Score';
+import Pagination from '../components/Pagination/Pagination';
 
 const Quiz = () => {
     const [questions, setQuestions] = useState([]);
@@ -96,7 +97,12 @@ const Quiz = () => {
                     </div>
                     <Row>
                         <Col>
-                            Questions {currentQuestion + 1 } of {questions.length}
+                            {/* Questions {currentQuestion + 1 } of {questions.length} */}
+                            <Pagination 
+                                title="Questions"
+                                currentPage={currentQuestion + 1}
+                                pageInTotal={questions.length}
+                            />
                         </Col>
                         <Col>
                             <Button onClick={handleNextQuestion}>Next question</Button>
