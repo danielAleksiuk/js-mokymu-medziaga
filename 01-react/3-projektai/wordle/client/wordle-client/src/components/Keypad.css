@@ -1,0 +1,29 @@
+.keypad {
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.keypad > div {
+    margin: 5px;
+    width : 40px;
+    height: 50px;
+    text-transform: uppercase;
+    background-color: #eee;
+    display: inline-block;
+    border-radius: 6px;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer
+}
+
+.keypad > div.green {
+    background-color: green;
+}
+
+.keypad > div.grey {
+    background-color: grey;
+}
+
+.keypad > div.yellow {
+    background-color: yellow;
+}
