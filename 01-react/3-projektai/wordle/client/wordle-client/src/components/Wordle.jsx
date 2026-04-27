@@ -4,21 +4,22 @@ import Grid from "./Grid";
 import Keypad from "./Keypad";
 
 const Wordle = ({solution}) => {
-    const {currentGuess, handleKeyup, turn, guesses, iscCorrect, usedKeys} =
+    const {currentGuess, handleKeyup, turn, guesses, isCorrect, usedKeys} =
      useWordle(solution);
 
     useEffect(() => {
         window.addEventListener('keyup', handleKeyup);
 
+        if (isCorrect || turn > 5) {
+            window.removeEventListener('keyup', handleKeyup);
+        }
+
         return () => window.removeEventListener(
             'keyup', handleKeyup
         );
-    }, [handleKeyup]);
+    }, [handleKeyup, isCorrect, turn]);
 
-    useEffect(() => {
-        console.log(guesses, turn, iscCorrect);
-    }, [guesses, turn, iscCorrect]);
-    
+   
      return (
         <>
             current guess - {currentGuess}
