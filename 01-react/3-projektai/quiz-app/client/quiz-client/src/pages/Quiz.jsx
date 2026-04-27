@@ -75,10 +75,15 @@ const Quiz = () => {
     }
 
     return (
-        <Container>
-            <h2>quiz app</h2>
-            {loading && (<Spinner animation="grow"/>)}
-            { !quizStarted && !showScore && <Button onClick={onStartButtonClick}> Start quiz </Button>}
+        <div className='position-relative' style={{height: '100vh'}}>
+            <Container className="position-absolute" style={{ maxWidth: "600px",top: "25%", left: "30%" }}>
+
+            {loading && (<div className="text-center">
+                <Spinner animation="grow"/>
+                <h4>Questions are loading</h4>
+            </div>)}
+            { !quizStarted && !showScore && !loading && <Button onClick={onStartButtonClick} style={{width: '100%'}}> Start quiz </Button>}
+            {/* { !quizStarted && !showScore  && <Button className="text-center" disabled={loading} onClick={onStartButtonClick}> Start quiz </Button>} */}
 
             { quizStarted && (
                 <Container>
@@ -98,7 +103,7 @@ const Quiz = () => {
                             />
                         </Col>
                         <Col>
-                            <Button onClick={handleNextQuestion}>Next question</Button>
+                            <Button style={{width: '100%'}} onClick={handleNextQuestion}>Next question</Button>
                         </Col>
                     </Row>
                 </Container>
@@ -112,7 +117,9 @@ const Quiz = () => {
                     restartButtonClick={onStartButtonClick}
                 /> 
             }
-        </Container>
+            </Container>
+        </div>
+       
     )
 };
 

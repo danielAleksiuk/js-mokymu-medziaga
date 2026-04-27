@@ -22,7 +22,7 @@ import { Button } from "react-bootstrap";
 
 const Score = (props) => { 
     return (
-        <>
+        <div className="text-center">
             <h2>{props.title}</h2>
             <p>your Score is: {props.points} points</p>
             <Button 
@@ -31,7 +31,7 @@ const Score = (props) => {
             >
                 {props.restartButtoText}
             </Button>
-        </>
+        </div>
     )
 }
 

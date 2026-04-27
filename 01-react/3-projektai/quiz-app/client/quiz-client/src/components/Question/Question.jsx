@@ -10,7 +10,7 @@ const Question = (props) => {
                     props.questionOptions.map((option, index) => (
                         <Button
                             key={index}
-                            className={props.selectedOptionId === option.id ?  'active' : ''}
+                            className={`m-1 ${props.selectedOptionId === option.id ?  'active' : ''}`}
                             onClick={() => props.handleOptionClick(option.id)}
                         >
                             {option.value}
