@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useWordle from "../hooks/useWordle";
 import Grid from "./Grid";
 import Keypad from "./Keypad";
+import StatusLabel from "./StatusLabel";
 
-const Wordle = ({solution}) => {
-    const {currentGuess, handleKeyup, turn, guesses, isCorrect, usedKeys} =
+const Wordle = ({solution, setSolution, getSolutionValue}) => {
+    const [gameFinished, setGameFinished] = useState(false);
+    const {currentGuess, handleKeyup, turn, guesses, isCorrect, usedKeys, resetValues} =
      useWordle(solution);
 
     useEffect(() => {
@@ -12,6 +14,7 @@ const Wordle = ({solution}) => {
 
         if (isCorrect || turn > 5) {
             window.removeEventListener('keyup', handleKeyup);
+            setGameFinished(true);
         }
 
         return () => window.removeEventListener(
@@ -19,16 +22,43 @@ const Wordle = ({solution}) => {
         );
     }, [handleKeyup, isCorrect, turn]);
 
-   
+    const onRestartGameHandler = () => {
+        resetValues();
+        setGameFinished(false);
+        const fetchSolution = async () => {
+            const result = await getSolutionValue();
+
+            setSolution(result);
+        }
+
+        fetchSolution();
+    };
+
+
      return (
         <>
             current guess - {currentGuess}
-            <Grid 
-                currentGuess={currentGuess}
-                guesses={guesses}
-                turn={turn}
-            />
-            <Keypad usedKeys={usedKeys}/>
+            { !gameFinished && (
+                <>
+                    <Grid 
+                        currentGuess={currentGuess}
+                        guesses={guesses}
+                        turn={turn}
+                    />
+                    <Keypad usedKeys={usedKeys}/>
+                </>
+            )}
+
+            { gameFinished && <StatusLabel 
+                wordleWord={solution}
+                isWinner={isCorrect}
+                />
+            }
+
+            { gameFinished && <button onClick={onRestartGameHandler}>
+                    Restart Game
+                </button>
+            }
         </>
      )
 

@@ -5,20 +5,42 @@ import Wordle from "./Wordle";
 const WordList = () => {
     const [solution, setSolution] = useState(null);
 
-    useEffect(() => {
-        fetch('http://localhost:3000/solutions')
+    const getSolutionValue = async () => {
+        let newValue;
+
+        await fetch('http://localhost:3000/solutions')
             .then(res => res.json())
             .then(json => {
-                setSolution(
+                newValue = 
                     json[Math.floor(Math.random() * json.length)].word
-                );
-            })
-    }, [setSolution])
+                
+            });
+        
+        return newValue;
+    }
+
+     useEffect(() => {
+        const fetchSolution = async () => {
+            const result = await getSolutionValue();
+
+            setSolution(result);
+        }
+
+        fetchSolution();
+        
+    }, [setSolution]);
+
     return (
         <div className="solution">
             {
                 solution && 
-                <div> {solution} //// The Word is  <Wordle solution={solution}/></div>
+                <div> {solution} //// The Word is 
+                    <Wordle    
+                        solution={solution}
+                        getSolutionValue={getSolutionValue}
+                        setSolution={setSolution}
+                    />
+                </div>
             }
         </div>
     )

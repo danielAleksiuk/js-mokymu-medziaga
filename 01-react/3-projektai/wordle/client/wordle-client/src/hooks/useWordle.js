@@ -10,6 +10,8 @@ const useWordle = (solution) => {
 
     const formatGuess = () => {
         // let solutioArray = [...solution];
+        console.log('sollll')
+        console.log(solution);
         let solutionArray = [...solution];
 
         // refactor it 
@@ -124,11 +126,17 @@ const useWordle = (solution) => {
         }
     }
 
-
-
+    const resetValues = () => {
+        setTurn(0);
+        setCurrentGuess('');
+        setHistory('');
+        setIsCorrect(false);
+        setGuesses([...Array(6)]);
+        setUsedKeys({});
+    }
 
     return (
-        {turn, currentGuess, guesses, history,isCorrect, handleKeyup, usedKeys}
+        {turn, currentGuess, guesses, history,isCorrect, handleKeyup, usedKeys, resetValues}
     )
 }
 
