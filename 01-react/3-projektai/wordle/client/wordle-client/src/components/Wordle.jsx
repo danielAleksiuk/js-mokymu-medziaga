@@ -3,16 +3,18 @@ import useWordle from "../hooks/useWordle";
 import Grid from "./Grid";
 import Keypad from "./Keypad";
 import StatusLabel from "./StatusLabel";
+import Timer from "./Timer";
 
 const Wordle = ({solution, setSolution, getSolutionValue}) => {
     const [gameFinished, setGameFinished] = useState(false);
+    const [timeIsOver, setTimeIsOver] = useState(false);
     const {currentGuess, handleKeyup, turn, guesses, isCorrect, usedKeys, resetValues} =
      useWordle(solution);
 
     useEffect(() => {
         window.addEventListener('keyup', handleKeyup);
-
-        if (isCorrect || turn > 5) {
+        console.log(timeIsOver);
+        if (isCorrect || turn > 5 || timeIsOver) {
             window.removeEventListener('keyup', handleKeyup);
             setGameFinished(true);
         }
@@ -20,7 +22,7 @@ const Wordle = ({solution, setSolution, getSolutionValue}) => {
         return () => window.removeEventListener(
             'keyup', handleKeyup
         );
-    }, [handleKeyup, isCorrect, turn]);
+    }, [handleKeyup, isCorrect, turn, timeIsOver]);
 
     const onRestartGameHandler = () => {
         resetValues();
@@ -36,10 +38,13 @@ const Wordle = ({solution, setSolution, getSolutionValue}) => {
 
 
      return (
-        <>
+        <>  
+        { timeIsOver && "true"}
+        { !timeIsOver && "false"}
             current guess - {currentGuess}
             { !gameFinished && (
                 <>
+                    <Timer setTimeIsOver={setTimeIsOver}/>
                     <Grid 
                         currentGuess={currentGuess}
                         guesses={guesses}
