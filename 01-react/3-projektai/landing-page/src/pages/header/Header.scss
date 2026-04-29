@@ -1,0 +1,34 @@
+.header {
+    background: url('./../../assets/intro-bg.jpg') center center no-repeat;
+    width: 100%;
+    padding: 0;
+
+    &--overlay {
+        background: rgba(0,0,0,0.2);
+    }
+
+    &__details {
+        text-align: center;
+        padding-top: 300px;
+        padding-bottom: 200px;
+        color: #fff;
+    }
+
+    &__title {
+        text-transform: uppercase;
+        font-size: 82px;
+    }
+
+    &__subtitle {
+        font-size: 22px;
+    }
+
+    &__button {
+        text-transform: uppercase;
+        width: 200px;
+        margin: 0 auto;
+        font-size: 20px;
+        border-radius: 20px;
+        padding: 15px 35px;
+    }
+}
