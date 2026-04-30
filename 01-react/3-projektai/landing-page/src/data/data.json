@@ -20,22 +20,22 @@
         "title": "features",
         "featuresItems": [
             {
-                "icon": "add_icon_name",
+                "icon": "HiChatAlt2",
                 "title": "lorem ipsum",
                 "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae natus molestiae ducimus voluptatibus ut illo sequi ratione!"
             },
             {
-                "icon": "add_icon_name",
+                "icon": "HiVolumeUp",
                 "title": "lorem ipsum",
                 "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae natus molestiae ducimus voluptatibus ut illo sequi ratione!"
             },
             {
-                "icon": "add_icon_name",
+                "icon": "HiOutlineUserGroup",
                 "title": "lorem ipsum",
                 "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae natus molestiae ducimus voluptatibus ut illo sequi ratione!"
             },
             {
-                "icon": "add_icon_name",
+                "icon": "HiPencil",
                 "title": "lorem ipsum",
                 "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae natus molestiae ducimus voluptatibus ut illo sequi ratione!"
             }
@@ -61,32 +61,32 @@
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         "serviceItems": [
             {
-                "icon": "add_icon_name",
+                "icon": "HiPencil",
                 "title": "lorem ipsum",
                 "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae natus molestiae ducimus voluptatibus ut illo sequi ratione!"
             },
             {
-                "icon": "add_icon_name",
+                "icon": "HiPencil",
                 "title": "lorem ipsum",
                 "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae natus molestiae ducimus voluptatibus ut illo sequi ratione!"
             },
             {
-                "icon": "add_icon_name",
+                "icon": "HiPencil",
                 "title": "lorem ipsum",
                 "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae natus molestiae ducimus voluptatibus ut illo sequi ratione!"
             },
             {
-                "icon": "add_icon_name",
+                "icon": "HiPencil",
                 "title": "lorem ipsum",
                 "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae natus molestiae ducimus voluptatibus ut illo sequi ratione!"
             },
               {
-                "icon": "add_icon_name",
+                "icon": "HiPencil",
                 "title": "lorem ipsum",
                 "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae natus molestiae ducimus voluptatibus ut illo sequi ratione!"
             },
             {
-                "icon": "add_icon_name",
+                "icon": "HiPencil",
                 "title": "lorem ipsum",
                 "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae natus molestiae ducimus voluptatibus ut illo sequi ratione!"
             }
@@ -98,39 +98,39 @@
         "images": [
             {
                 "title": "happy dog",
-                "url": "add_url_here"
+                "url": "./public/portfolio/01-small.jpg"
             },
             {
                 "title": "happy dog",
-                "url": "add_url_here"
+                "url": "./public/portfolio/01-small.jpg"
             },
             {
                 "title": "happy dog",
-                "url": "add_url_here"
+                "url": "./public/portfolio/01-small.jpg"
             },
              {
                 "title": "happy dog",
-                "url": "add_url_here"
+                "url": "./public/portfolio/01-small.jpg"
             },
             {
                 "title": "happy dog",
-                "url": "add_url_here"
+              "url": "./public/portfolio/01-small.jpg"
             },
             {
                 "title": "happy dog",
-                "url": "add_url_here"
+               "url": "./public/portfolio/01-small.jpg"
             },
              {
                 "title": "happy dog",
-                "url": "add_url_here"
+                "url": "./public/portfolio/01-small.jpg"
             },
             {
                 "title": "happy dog",
-                "url": "add_url_here"
+                "url": "./public/portfolio/01-small.jpg"
             },
             {
                 "title": "happy dog",
-                "url": "add_url_here"
+                "url": "./public/portfolio/01-small.jpg"
             }
         ]
     },
@@ -140,32 +140,32 @@
             {
                 "client": "John doe",
                 "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia ab facere consequuntur omnis. Libero voluptas, nulla voluptatem rerum porro praesentium dolore autem velit distinctio doloribus ut, quos aliquid ullam iure.",
-                "url": "add_url_here"
+                "url": "./public/testimonials/01.jpg"
             },
             {
                 "client": "John doe",
                 "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia ab facere consequuntur omnis. Libero voluptas, nulla voluptatem rerum porro praesentium dolore autem velit distinctio doloribus ut, quos aliquid ullam iure.",
-                "url": "add_url_here"
+                "url": "./public/testimonials/01.jpg"
             },
             {
                 "client": "John doe",
                 "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia ab facere consequuntur omnis. Libero voluptas, nulla voluptatem rerum porro praesentium dolore autem velit distinctio doloribus ut, quos aliquid ullam iure.",
-                "url": "add_url_here"
+                "url": "./public/testimonials/01.jpg"
             },
             {
                 "client": "John doe",
                 "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia ab facere consequuntur omnis. Libero voluptas, nulla voluptatem rerum porro praesentium dolore autem velit distinctio doloribus ut, quos aliquid ullam iure.",
-                "url": "add_url_here"
+                "url": "./public/testimonials/01.jpg"
             },
             {
                 "client": "John doe",
                 "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia ab facere consequuntur omnis. Libero voluptas, nulla voluptatem rerum porro praesentium dolore autem velit distinctio doloribus ut, quos aliquid ullam iure.",
-                "url": "add_url_here"
+                "url": "./public/testimonials/01.jpg"
             },
              {
                 "client": "John doe",
                 "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia ab facere consequuntur omnis. Libero voluptas, nulla voluptatem rerum porro praesentium dolore autem velit distinctio doloribus ut, quos aliquid ullam iure.",
-                "url": "add_url_here"
+                "url": "./public/testimonials/01.jpg"
             }
         ]
     },
@@ -175,22 +175,23 @@
         "members": [
             {
                 "name": "john doe",
-                "url":"add_url_here"
+                "role": "designer",
+                "url": "./public/team/01.jpg"
             },
             {
                 "name": "john doe",
                 "role": "designer",
-                "url":"add_url_here"
+                "url": "./public/team/01.jpg"
             },
             {
                 "name": "john doe",
                 "role": "manager",
-                "url":"add_url_here"
+                "url": "./public/team/01.jpg"
             },
             {
                 "name": "john doe",
                 "role": "developer",
-                "url":"add_url_here"
+                "url": "./public/team/01.jpg"
             }
         ]
     },
