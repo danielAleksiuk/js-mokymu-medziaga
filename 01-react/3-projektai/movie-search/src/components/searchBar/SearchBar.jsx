@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 
 const SearchBar = ({onChangeMethod, onKeyUpMethod}) => {
     return (
-        <Form>
+        <>
             <Form.Control
                 type='text'
                 placeholder='Movie title....'
@@ -15,7 +15,7 @@ const SearchBar = ({onChangeMethod, onKeyUpMethod}) => {
                 <option value="movies">Movies</option>
                 <option value="series">Tv series</option>
             </Form.Select>
-        </Form>
+        </>
         
     )
 }

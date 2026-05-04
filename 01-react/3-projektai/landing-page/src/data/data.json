@@ -176,22 +176,22 @@
             {
                 "name": "john doe",
                 "role": "designer",
-                "url": "./public/team/01.jpg"
+                "url": "./public/testimonials/01.jpg"
             },
             {
                 "name": "john doe",
                 "role": "designer",
-                "url": "./public/team/01.jpg"
+                "url": "./public/testimonials/01.jpg"
             },
             {
                 "name": "john doe",
                 "role": "manager",
-                "url": "./public/team/01.jpg"
+                "url": "./public/testimonials/01.jpg"
             },
             {
                 "name": "john doe",
                 "role": "developer",
-                "url": "./public/team/01.jpg"
+                "url": "./public/testimonials/01.jpg"
             }
         ]
     },

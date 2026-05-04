@@ -9,6 +9,8 @@ import Services from './pages/services/Services';
 import Gallery from './pages/gallery/Gallery';
 import Feedback from './pages/feedback/Feedback';
 import Team from './pages/team/Team';
+import Footer from './pages/footer/Footers';
+import Contacts from './pages/contacts/Contacts';
 
 function App() {
   const [landingPadeData, setLandingPageData] = useState(null);
@@ -58,6 +60,15 @@ function App() {
             description={landingPadeData.team.description}
             members={landingPadeData.team.members}
           />
+          <Contacts
+            title={landingPadeData.contacts.title}
+            description={landingPadeData.contacts.description}
+            contactInfo={landingPadeData.contacts.contactInfo}
+            socialIcons={landingPadeData.contacts.socialIcons}
+          />
+          <Footer
+            title={landingPadeData.footer.title}
+            />
         </>
       )}
     </>

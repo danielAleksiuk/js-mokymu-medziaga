@@ -6,16 +6,21 @@ const Timer = ({setTimeIsOver}) => {
     useEffect(() => {
         const interval = setInterval(() => {
             setSeconds(prev => {
-               if (prev < 0 ) {
-                setTimeIsOver(true);
-                return 5;
-               }
+           
 
-               
-               return prev - 1
+                 if (prev > 0) {
+                    return prev - 1;
+                }
+
+                 
+
+                return 5;
+          
             });
           
         }, 1000);
+
+        setTimeout(() => {}, 1000)
 
         return () => clearInterval(interval);
     },[setTimeIsOver])
