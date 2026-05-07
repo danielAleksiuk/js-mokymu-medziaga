@@ -1,0 +1,26 @@
+body {
+    background: linear-gradient(135deg, #f99ae0, #9adcf9);
+}
+
+.weather-card {
+    text-align: center;
+    margin: 100px auto;
+    padding: 25px;
+    max-width: 500px;
+    border-radius: 5px;
+    border-color: black;
+    border-width: 2px;
+    border-style: double;
+    background: #f4ecec;
+}
+
+.temperature { 
+    color: red;
+    font-size: 30px;
+}
+
+.description {
+    color: violet;
+    text-transform: uppercase;
+    font-size: 30px;
+}

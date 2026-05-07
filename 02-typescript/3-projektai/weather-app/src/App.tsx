@@ -2,7 +2,8 @@ import { useEffect, useState } from "react"
 import WeatherCard from "./components/WeatherCard"
 import WeatherForm from "./components/WeatherForm"
 import useFetch from "./hooks/useFetch";
-import { WeatherData } from "./types/WeatherData";
+import { type WeatherData } from "./types/WeatherData";
+import './App.css';
 
 const API_TOKEN = '68797b06fddedf2781f9a820196a2aab';
 
@@ -27,9 +28,8 @@ function App() {
 
   return (
     <div className="weather-card">
-      <h2>{city}</h2>
       <WeatherForm setCity={setCity}/>
-      <WeatherCard data={weatherData}/>
+      { weatherData && <WeatherCard data={weatherData}/>}
     </div>
   )
 }
