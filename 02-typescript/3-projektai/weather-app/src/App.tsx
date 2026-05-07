@@ -1,22 +1,35 @@
 import { useEffect, useState } from "react"
 import WeatherCard from "./components/WeatherCard"
 import WeatherForm from "./components/WeatherForm"
+import useFetch from "./hooks/useFetch";
+import { WeatherData } from "./types/WeatherData";
 
+const API_TOKEN = '68797b06fddedf2781f9a820196a2aab';
 
 function App() {
   const [city, setCity] = useState<string>('');
+  const {data, makeApiCall} = useFetch();
+  const [weatherData, setWeatherData] = useState<WeatherData>();
 
   useEffect(() => {
-    console.log('city pasikeite')
+    if (city) {
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_TOKEN}&units=metric`;
+      makeApiCall(url);
+    }
+  }, [city]);
 
-    https://api.openweathermap.org/data/2.5/weather?q=London&appid=68797b06fddedf2781f9a820196a2aab&units=metric
-  }, [city])
+  useEffect(() => {
+    console.log(data);
+    if (data) {
+      setWeatherData(data);
+    }
+  }, [data])
 
   return (
     <div className="weather-card">
       <h2>{city}</h2>
       <WeatherForm setCity={setCity}/>
-      <WeatherCard/>
+      <WeatherCard data={weatherData}/>
     </div>
   )
 }
