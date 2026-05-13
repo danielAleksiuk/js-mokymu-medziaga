@@ -7,25 +7,20 @@ const useFetch = (timeout: number = 2000) => {
 
     const makeApiCall = async (url: string) => {
         setLoading(true);
+        setErrorMessage(undefined);
 
         setTimeout( async () => {
             await fetch(url)
                 .then(res => res.json())
                 .then(data => {
-                    if (data.cod && data.cod == "404") {
+                    if (data.cod && data.cod === "404") {
                         setErrorMessage(data.message)
                         return;
                     }
                     console.log('data then')
-                    setData(data)
-
+                    setData(data);
                 })
-                .catch((e) => {
-                    const message = e.message 
-                        ? e.message 
-                        : 'Sorry, something went worng. Please try again.'
-                    setErrorMessage(message)
-                })
+                .catch(() => setErrorMessage( 'Sorry, something went worng. Please try again.'))
                 .finally(() => setLoading(false));
         }, timeout);
     }

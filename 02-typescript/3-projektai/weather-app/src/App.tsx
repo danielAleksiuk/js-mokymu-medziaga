@@ -32,7 +32,7 @@ function App() {
   return (
     <div className="weather-card">
       <WeatherForm setCity={setCity}/>
-      {errorMessage}
+      { errorMessage && <div className="error-msg">{errorMessage}</div>}
       { weatherData && <WeatherCard data={weatherData}/>}
     </div>
   )

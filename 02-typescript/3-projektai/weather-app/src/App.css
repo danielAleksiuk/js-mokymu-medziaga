@@ -25,3 +25,9 @@ body {
     text-transform: uppercase;
     font-size: 30px;
 }
+
+.error-msg {
+    color: red;
+    text-transform: capitalize;
+    margin-top: 50px;
+}
