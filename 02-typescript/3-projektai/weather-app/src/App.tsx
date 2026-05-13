@@ -4,6 +4,7 @@ import WeatherForm from "./components/WeatherForm"
 import useFetch from "./hooks/useFetch";
 import { type WeatherData } from "./types/WeatherData";
 import './App.css';
+import Forecast from "./components/Forecast";
 
 const API_TOKEN = '68797b06fddedf2781f9a820196a2aab';
 
@@ -34,6 +35,7 @@ function App() {
       <WeatherForm setCity={setCity}/>
       { errorMessage && <div className="error-msg">{errorMessage}</div>}
       { weatherData && <WeatherCard data={weatherData}/>}
+      { weatherData && <Forecast lon={weatherData.coord.lon} lat={weatherData.coord.lat} />}
     </div>
   )
 }
