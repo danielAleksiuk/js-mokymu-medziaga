@@ -9,11 +9,14 @@ const API_TOKEN = '68797b06fddedf2781f9a820196a2aab';
 
 function App() {
   const [city, setCity] = useState<string>('');
-  const {data, makeApiCall} = useFetch();
+  const {data, makeApiCall, errorMessage} = useFetch();
   const [weatherData, setWeatherData] = useState<WeatherData>();
 
   useEffect(() => {
     if (city) {
+      if (weatherData) {
+        setWeatherData(undefined);
+      }
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_TOKEN}&units=metric`;
       makeApiCall(url);
     }
@@ -29,6 +32,7 @@ function App() {
   return (
     <div className="weather-card">
       <WeatherForm setCity={setCity}/>
+      {errorMessage}
       { weatherData && <WeatherCard data={weatherData}/>}
     </div>
   )
