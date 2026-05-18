@@ -1,0 +1,24 @@
+<%
+    const manoVardas = 'Danielius'
+%>
+
+<%- include('./partials/head.ejs') %>
+
+    <h1>index su ejs</h1>
+    <h2><%= title%> </h2>
+    <h4><%= manoVardas %></h4>
+
+    <% if (lessons.length > 0) {  %>
+        <h3> pas jus dbr yra <%= lessons.length %> pamokos</h3>
+
+        <% lessons.forEach(element => { %>
+            <h3><%= element.title %></h3>
+            <p><%= element.description %></p>
+        <%  }) %>
+
+    <% } else { %>
+        <p>dabar pamoku nera</p>
+    <% } %>
+
+
+<%- include('./partials/footer.ejs') %>
