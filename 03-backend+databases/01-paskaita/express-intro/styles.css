@@ -1,3 +1,11 @@
 body {
-    background: #8f8f8f;
+    background: #8f8f8f42
+}
+
+.lessons-table {
+    border: 1px solid black;
+}
+
+.lessons-table td, .lessons-table td {
+    padding: 20px;
 }

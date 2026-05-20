@@ -1,0 +1,99 @@
+
+
+<!-- 1. url -> /pamokos 
+++++ 
+2. uzkrautas lessons.ejs 
+    duomenys is mongo db
+++++
+3.  pamokas atvaizduoti i lentele
+        stulpeliai 
+            pavadinimas
+            aprasymas
+            studentu skaicius
+    lentele minimaliai prideti css stiliu -->
+<script>
+
+    // window.addEventListener('load', () => {
+    //     const aDelete = document.querySelector('a.delete')
+
+    //     aDelete.addEventListener('click', () => {
+    //         console.log(aDelete.dataset.doc)
+    //     })
+    // });
+    
+    function deleteLesson (id) {
+        // console.log(id)
+
+        const endpoint = `/lesson/${id}`
+
+        fetch(endpoint, {method: "DELETE"})
+            .then(res => res.json())
+            .then(data => location.reload())
+            .catch(error => console.log(error));
+    }
+
+    function updateLesson(id) {
+        const endpoint = `/lesson/${id}`;
+        const body = {name: 'updated name'};
+
+          fetch(endpoint, {method: "PUT", body: JSON.stringify(body )})
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+    }
+
+</script>
+
+<style>
+    a.delete {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+</style>
+
+
+<%- include('./partials/head.ejs') %>
+<h1>pamoku sarasas</h1>
+
+<% if (lessons.length > 0)  { %>
+    <h3>pamokos yra</h3>
+    <table class="lessons-table">
+        <thead>
+            <th>pavadinimas</th>
+            <th>aprasymas</th>
+            <th>min studentu skaicius</th>
+            <th>actions</th>
+        </thead>
+        <tbody>
+            <% lessons.forEach(element => { %>
+               <tr>
+                    <td><%= element.name %></td>
+                    <td><%= element.description %></td>
+                    <td><%= element.minNumberOfStudent %> </td>
+                    <td>
+                        <a 
+                            class="delete" 
+                            onclick="deleteLesson('<%= element._id %>')"">
+                            delete
+                        </a>
+
+                        <a 
+                            class="delete" 
+                            onclick="updateLesson('<%= element._id %>')"">
+                            update
+                        </a>
+                    </td>
+
+                    
+               </tr> 
+            <% });  %>
+
+        </tbody>
+    </table>
+<% } else { %>
+    <h3>pamoku nera</h3>
+<% } %> 
+
+
+
+<%- include('./partials/footer.ejs') %>
