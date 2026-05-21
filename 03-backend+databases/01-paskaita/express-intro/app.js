@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Lesson = require('./models/lesson');
+const lessonRoutes = require('./routes/lessonRoutes');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -8,6 +9,8 @@ app.set('view engine', 'ejs');
 app.set('views', './views-ejs')
 app.use(express.static(__dirname));
 // app.use(express.urlencoded({extended: true}))
+
+app.use(lessonRoutes);
 
 const port = 3000;
 
@@ -21,50 +24,7 @@ mongoose.connect(dbURL, {dbName: dbName})
     .catch(error => console.log(error));
 // mongoose.connection.useDb('Mokykla');
 
-app.get('/addLesson', (req, res) => {
-    const newLesson = new Lesson({
-        name: 'biologija',
-        description: 'bla bla bla',
-        minNumberOfStudent: 5
-    });
 
-    newLesson.save()
-        .then(result => res.send(result))
-        .catch(error => console.log(error));
-});
-
-app.get('/allLessons', (req, res) => {
-    Lesson.find()
-        .then(result => res.render('index', {
-                title: 'mano pirmas db response',
-                lessons: result})
-                //res.send(result)
-        )
-        .catch(error => console.log(error))
-});
-
-app.get('/oneLesson', (req, res) => {
-    Lesson.findById('6a0dce91b6bace930fd92451')
-        .then(result => res.send(result))
-        .catch(error => console.log(error));
-});
-
-app.delete('/lesson/:id', (req, res) => {
-    const id = req.params.id;
-
-    Lesson.findByIdAndDelete(id)
-        .then(result => res.send(result))
-        .catch(error => console.log(error));
-});
-
-app.put('/lesson/:id', (req, res) => {
-    const id = req.params.id;
-    const body = {name: 'random name'};
-
-    Lesson.findByIdAndUpdate(id, body)
-        .then(result => res.send(result))
-        .catch(error => console.log(error));
-})
 
 app.get('/', (req, res) => {
     // res.send('<h1>valio expresss veikia</h1>');
@@ -87,7 +47,6 @@ app.get('/apie', (req, res) => {
 
 // vcsUser
 // admin123
-
 
 app.get('/pamokos', (req, res) => {
     //  2 zingsnis
