@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Homes';
 import Navbar from './components/Navbar';
+import TaskForm from './components/TaskForm';
 
 const App = () => {
 
@@ -14,6 +15,10 @@ const App = () => {
               <Route
                 path='/'
                 element={<Home/>}
+              />
+              <Route
+                path='/newTask'
+                element={<TaskForm/>}
               />
           </Routes>
         </div>

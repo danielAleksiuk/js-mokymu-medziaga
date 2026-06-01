@@ -23,6 +23,7 @@ const taskGetbyId =
 const taskPost =
   ("/",
   async (req, res) => {
+    console.log(req.body);
     const { title, reps, desc, load } = req.body;
     try {
       const newTask = await Task.create({ title, reps, desc, load });

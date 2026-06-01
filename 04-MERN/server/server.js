@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import tasksRoutes from './routes/tasks.js';
 import mongoose from 'mongoose';
+import cors from 'cors';
 
 dotenv.config();
 const app = express();
@@ -13,6 +14,7 @@ app.use((req, res, next) => {
 
     next();
 })
+app.use(cors());
 app.use('/api/tasks', tasksRoutes);
 
 mongoose.connect(process.env.DATABASE_URL)

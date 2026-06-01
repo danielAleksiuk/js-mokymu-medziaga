@@ -5,9 +5,10 @@ const Navbar = () => {
         <header>
             <div className="container">
                 <Link to='/'>
-                    <h3>
-                        Mano pratimas
-                    </h3>
+                    <h3>Mano pratimai</h3>
+                </Link>
+                <Link to='/newTask'>
+                    <h3>Prideti nauja pratima</h3>
                 </Link>
             </div>
         </header>

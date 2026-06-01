@@ -1,34 +1,38 @@
 import { useEffect, useState } from "react";
+import useFetch from "../hooks/useFetch";
+import TaskDetails from "../components/TaskDetails";
+import TaskForm from "../components/TaskForm";
+import Loader from "../components/Loader";
 
 const Home = () => {
     const [tasks, setTasks] = useState([]);
-
+    const {data, loading, makeApiCall} = useFetch();
+    
     useEffect( () => {
-
-        const getData = async () => {
-            await fetch('http://localhost:4000/api/tasks')
-            .then(res => res.json())
-            .then(data => setTasks(data))
-            .catch(e => console.log(e));
-        };
-
-        getData();
-
+        makeApiCall('http://localhost:4000/api/tasks', 'GET');
     }, []);
 
-
-    // gauna - URL, httpMetoda (get post, delete, patch)
-    // return data, loader, metodaApi
-
+    useEffect(() => {
+        if (data) {
+            setTasks(data);
+        }
+    }, [data])
 
 
     return (
         <div className="home">
             <div className="tasks">
+                {loading && <Loader text="data is loading"/>}
                 {tasks && tasks.map((task: any) => (
-                    <p key={task._id}>
-                        {task.title}
-                    </p>
+                    <TaskDetails
+                        key={task._id}
+                        title={task.title}
+                        load={task.load}
+                        reps={task.reps}
+                        description={task.description}
+                        id={task._id}
+                        createdAt={task.createdAt}
+                    />
                 ))}
             </div>
         </div>
