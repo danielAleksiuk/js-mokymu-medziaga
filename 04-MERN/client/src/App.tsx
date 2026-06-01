@@ -18,7 +18,7 @@ const App = () => {
               />
               <Route
                 path='/newTask'
-                element={<TaskForm/>}
+                element={<TaskForm action='new'/>}
               />
           </Routes>
         </div>

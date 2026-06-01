@@ -1,17 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Task } from "../types/Task";
 import useFetch from "../hooks/useFetch";
 
-const TaskForm = () => {
+type TaskFormProps = {
+    action: string;
+    task?: Task;
+}
+
+const TaskForm = (props: TaskFormProps) => {
     const [task, setTask] = useState<any>();
     const [error, setError] = useState<string>('');
      const {data, loading, makeApiCall} = useFetch();
 
+
+    useEffect(() => {
+        if (props.task) {
+            setTask(props.task);
+        }
+    }, [props])
+
+    const getHTTPMethodByAction = (action: string): string => {
+        if (action === 'edit') {
+            return 'PATCH';
+        }
+
+        if (action === 'new') {
+            return 'POST';
+        }
+
+        return 'GET';
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
+        let url = 'http://localhost:4000/api/tasks';
+
+        if (props.action === 'edit') {
+            url += `/${task.id}`
+        }
+
         makeApiCall(
-            'http://localhost:4000/api/tasks',
-            'POST',
+            url,
+            getHTTPMethodByAction(props.action),
             task
         );
         console.log(task)
@@ -69,7 +99,10 @@ const TaskForm = () => {
                 }))}
             />
 
-            <button>prideti pratima</button>
+            <button>
+                { props.action === 'edit' && 'atnaujink pratimo duomenis'}
+                { props.action === 'new' && 'pridek nauja pratima'}
+            </button>
         </form>
     )
 }
