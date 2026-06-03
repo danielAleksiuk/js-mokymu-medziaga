@@ -10,6 +10,12 @@ const Navbar = () => {
                 <Link to='/newTask'>
                     <h3>Prideti nauja pratima</h3>
                 </Link>
+                <nav id='navUser'>
+                    <div>
+                        <Link to='/login'>Prisijungti</Link>
+                        <Link to='/signup'>Registracija</Link>
+                    </div>
+                </nav>
             </div>
         </header>
     )

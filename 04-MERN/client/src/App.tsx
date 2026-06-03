@@ -3,6 +3,8 @@ import './App.css';
 import Home from './pages/Homes';
 import Navbar from './components/Navbar';
 import TaskForm from './components/TaskForm';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 const App = () => {
 
@@ -19,6 +21,14 @@ const App = () => {
               <Route
                 path='/newTask'
                 element={<TaskForm action='new'/>}
+              />
+              <Route
+                path='/login'
+                element={<Login/>}
+              />
+              <Route 
+                path='/signup'
+                element={<Signup/>}
               />
           </Routes>
         </div>
