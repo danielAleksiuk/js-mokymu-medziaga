@@ -6,6 +6,7 @@ import TaskForm from './components/TaskForm';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import { useAuthContext } from './hooks/useAuthContext';
+import NotFound from './pages/NotFound';
 
 const App = () => {
 
@@ -14,7 +15,7 @@ const App = () => {
      const {user} = useAuthContext();
 
      console.log(user)
-    return user ? <Outlet/> : <Navigate  to='/login' replace/>;
+    return user ? <Outlet/> : <Navigate  to='/login'/>;
   }
 
   return (
@@ -30,6 +31,10 @@ const App = () => {
               <Route 
                 path='/signup'
                 element={<Signup/>}
+              />
+              <Route 
+                path='*'
+                element={<NotFound/>}
               />
 
               <Route element={<ProtectedRoute/>}>
