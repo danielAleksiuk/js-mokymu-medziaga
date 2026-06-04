@@ -5,6 +5,18 @@ const useFetch = (timeout = 2000) => {
     const [loading, setLoading] = useState(false);
 
     const makeApiCall = async (url: string, method: string, bodyData) => {
+        const token = localStorage.getItem('token');
+        let headers = {};
+        if (token) {
+            headers = {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            } 
+        } else {
+            headers = {
+                "Content-Type": "application/json"
+            }
+        }
         setLoading(true);
 
         setTimeout( async () => {
@@ -13,7 +25,7 @@ const useFetch = (timeout = 2000) => {
                 {
                     method: method,
                     body:  JSON.stringify(bodyData),
-                    headers: {"Content-Type": "application/json"}
+                    headers: headers
                 })
                 .then(res => res.json())
                 .then(data => setData(data))

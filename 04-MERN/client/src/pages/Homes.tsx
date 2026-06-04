@@ -6,12 +6,20 @@ import Loader from "../components/Loader";
 const Home = () => {
     const [tasks, setTasks] = useState([]);
     const {data, loading, makeApiCall} = useFetch();
+    const [error, setError] = useState(null);
     
     useEffect( () => {
         makeApiCall('http://localhost:4000/api/tasks', 'GET');
     }, []);
 
     useEffect(() => {
+        console.log(data)
+        if (data && data.error) {
+            setError(data.error);
+
+            return;
+        }
+
         if (data) {
             setTasks(data);
         }
@@ -22,6 +30,7 @@ const Home = () => {
         <div className="home">
             <div className="tasks">
                 {loading && <Loader text="data is loading"/>}
+                {error && <h4>{error}</h4>}
                 {tasks && tasks.map((task: any) => (
                     <TaskDetails
                         key={task._id}

@@ -1,12 +1,19 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Homes';
 import Navbar from './components/Navbar';
 import TaskForm from './components/TaskForm';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import { useAuthContext } from './hooks/useAuthContext';
 
 const App = () => {
+  const {user} = useAuthContext();
+
+  const protectedRoute = () => {
+    return user ? <Outlet/>
+      : '/login';
+  }
 
   return (
     <div className='App'>

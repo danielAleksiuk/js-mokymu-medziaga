@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 
 // 123A!aaaaaaaaaa
@@ -12,10 +13,13 @@ const Login = () => {
     });
     const {data, loading, makeApiCall} = useFetch();
     const navigate = useNavigate();
+    const {dispatch} = useAuthContext();
 
     useEffect(() => {
         if (data && data.token) {
             localStorage.setItem('token', data.token);
+            localStorage.setItem('user', data.userName);
+            dispatch({type: 'LOGIN', payload: data.userName})
             navigate('/');
             
         }
