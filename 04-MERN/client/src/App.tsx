@@ -1,4 +1,4 @@
-import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Homes';
 import Navbar from './components/Navbar';
@@ -8,11 +8,13 @@ import Signup from './pages/Signup';
 import { useAuthContext } from './hooks/useAuthContext';
 
 const App = () => {
-  const {user} = useAuthContext();
 
-  const protectedRoute = () => {
-    return user ? <Outlet/>
-      : '/login';
+
+  const ProtectedRoute = () => {
+     const {user} = useAuthContext();
+
+     console.log(user)
+    return user ? <Outlet/> : <Navigate  to='/login' replace/>;
   }
 
   return (
@@ -22,14 +24,6 @@ const App = () => {
         <div className='pages'>
           <Routes>
               <Route
-                path='/'
-                element={<Home/>}
-              />
-              <Route
-                path='/newTask'
-                element={<TaskForm action='new'/>}
-              />
-              <Route
                 path='/login'
                 element={<Login/>}
               />
@@ -37,6 +31,17 @@ const App = () => {
                 path='/signup'
                 element={<Signup/>}
               />
+
+              <Route element={<ProtectedRoute/>}>
+                <Route
+                  path='/'
+                  element={<Home/>}
+                />
+                <Route
+                  path='/newTask'
+                  element={<TaskForm action='new'/>}
+                />
+              </Route>
           </Routes>
         </div>
       </BrowserRouter>
